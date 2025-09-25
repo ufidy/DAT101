@@ -12,31 +12,33 @@
     <ol>
       <li>Where should you use constants, and where should you use variables? Can they all be constants?</li>
       <p>
-				[Replace this with you answer]
+				Constants should be used for values that wont change at all. Constants are usually used for values like mathematical constants, for example: π. They are also sed for configuration settings. Variables on the other hand, are used for data that can change. This can be like user input or results of calculations. Everything in your code can be constants if you don't plan on them changing, but since a lot of code is constantly changing, its better to use variables for most things.
 			</p>
       <li>How do parentheses affect the arithmetic outcome of an expression?</li>
       <p>
-				[Replace this with you answer]
+				Parentheses in code work just like they work in math. Parentheses help dictate the order of operations. For example, if you have a math equation like this: 2+3*3, the answer is 11. However, once you add parentheses, as so: (2+3)*3, the math equation changes and the answer becomes 15.
 			</p>
       <li>How do we limit floating-point numbers to a given number of decimals?</li>
       <p>
-				[Replace this with you answer]
+				The way to limit floating point numbers is to add a function to the code that lets you choose how many point numbers a number will show. This function is: toFixed(). The number you add in the parentheses will be the amount of decimals shown.
 			</p>
       <li>How can we compare two floating-point values to see if they are equal (is 12.199999 the same as 12.2)?</li>
       <p>
-				[Replace this with you answer]
+				You can use this code to find out whether or not 12.2 and 12.1999 are equal: 
+const epsilon = 0.0001; if (Math.abs(a - b) < epsilon) { // a and b are considered equal }
 			</p>
       <li>What do comparison operators return, and how can we check if they are FALSE or TRUE?</li>
       <p>
-				[Replace this with you answer]
+				Comparison operators return a Boolean value, basically giving you a TRUE or FALSE. There is a code to check directly: 
+ let result = (5 > 3); // result is TRUE if (result) { console.log("It's true!"); } else { console.log("It's false!"); }
 			</p>
       <li>How does the Math.random() function work, and what can it be used for?</li>
       <p>
-				[Replace this with you answer]
+				The Math.random() function works by generating a random number between a range you give it.
 			</p>
       <li>What is modulus (%), and when do we need this operator in mathematical operations?</li>
       <p>
-				[Replace this with you answer]
+				The modulus operator returns the remainder of a division operation. For example, 5%2 will return you the number 1, because the number 2 goes into 5 twice and 1 remains. 
 			</p>
     </ol>
 		<script type="module" src="./task_2-2.mjs" defer></script>
