@@ -4,17 +4,27 @@ import { printOut, newLine } from "../../common/script/utils.mjs";
 
 printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+Answer = 2 + (3 * ((2 - 4) * 6)); 
+printOut("Replace this with you answer!" + Answer);
 printOut(newLine);
 
 printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
+
 printOut("Replace this with you answer!");
 printOut(newLine);
 
 printOut("--- Part 3 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+let Days = 3;
+let Hours = 12;
+let Minutes = 14;
+let Seconds = 45;
+let DaysToHours = (Days * 24);
+let HoursToMinutes = (DaysToHours + Hours) * 60;
+let SecondsToMinutes = (Seconds * 60) + Minutes;
+Answer = HoursToMinutes + SecondsToMinutes;
+printOut("Replace this with you answer!" + Answer);
 printOut(newLine);
 
 printOut("--- Part 4 ----------------------------------------------------------------------------------------------");
