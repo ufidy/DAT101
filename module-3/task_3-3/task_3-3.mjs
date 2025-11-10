@@ -3,12 +3,27 @@ import { printOut, newLine } from "../../common/script/utils.mjs";
 
 printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+let txtPrintValue = "";
+for (let i = 1; i <= 10; i++) {
+    txtPrintValue += " " + i.toString();
+}
+printOut(txtPrintValue);
+
+let txtPrintValue2 = "";
+for (let a = 10; a>=1; a--) {
+    txtPrintValue2 += " " + a.toString();
+}
+printOut(txtPrintValue2);
 printOut(newLine);
 
 printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+let number = Math.floor(Math.random() * 60) + 1;
+while (number !== 7) {
+    number = Math.floor(Math.random() * 60) + 1;
+}
+
+printOut("The number is " + number);
 printOut(newLine);
 
 printOut("--- Part 3 ----------------------------------------------------------------------------------------------");
