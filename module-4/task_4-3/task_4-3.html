@@ -13,11 +13,21 @@
   <input type="number" id="txtRectWidth" value="0" style="width:4em">
   <label for="txtRectHeight">Height:</label>
   <input type="number" id="txtRectHeight" value="0" style="width:4em">
-  <input type="button" id="cmbTask1Calculate" value="Calculate">
+  <input type="button" id="cmbTask1Calculate" value="Calculate" onclick="cmbTask1Calculate()">
   <p id="txtTask1Output">
     Circumference = 0, Area = 0
   </p>
 </fieldset>
+<script>
+document.getElementById("cmbTask1Calculate").onclick = cmbTask1Calculate;
+function cmbTask1Calculate(){
+  let width = Number(document.getElementById("txtRectWidth").value);
+  let height = Number(document.getElementById("txtRectHeight").value);
+
+  let perimeter = 2 * (width + height);
+  let area = width * height;
+document.getElementById("txtTask1Output").textContent = `Circumference = ${perimeter}, Area ${area}`}
+</script>
 <p></p>
 <fieldset>
   <legend>Task 2: Text</legend>
@@ -25,6 +35,29 @@
   <input type="text" id="txtTask2Word" value="" style="width: 10em"> (hit enter!)
   <p id="txtTask2Output">Number of words = 0</p>
 </fieldset>
+<script>
+const task2Words = [];
+
+const input = document.getElementById("txtTask2Word");
+const output = document.getElementById("txtTask2Output");
+
+input.addEventListener("keydown", function(event){
+  if (event.key === "Enter") {
+    event.preventDefault();
+
+    const word = input.value.trim();
+
+    if (word.length > 0) {
+      task2Words.push(word);
+
+      output.textContent = `Words (${task2Words.length}): ${task2Words.join(", ")}`;
+    
+      input.value = "";
+    }
+  }
+});
+</script>
+
 <p></p>
 <fieldset>
   <legend>Task 3: Text</legend>
@@ -37,6 +70,23 @@
   <input type="button" id="cmbTask3CheckAnswer" value="Check Answer!"><br/>
   <p id="txtTask3Output"></p>
 </fieldset>
+<script>
+document.getElementById("cmbTask3CheckAnswer").addEventListener("click", function(){
+  const checkboxes = document.querySelectorAll(`input[type="checkbox"]`);
+
+  let selected = [];
+  checkboxes.forEach(chk => {
+    if (chk.checked){
+      selected.push(chk.value);
+    }
+  });
+  let output = selected.length > 0 
+  ? `Selected: ${selected.join(", ")}`
+  : "No checkboxes selected";
+  
+  document.getElementById("txtTask3Output").textContent = output;
+});
+</script>
 <p></p>
 <fieldset>
   <legend>Task 4: Cars</legend>
@@ -45,6 +95,47 @@
   </div>
   <p id="txtTask4Output"></p>
 </fieldset>
+<script>
+  const CarTypes = [
+  { value: 1, caption: "Aston Martin" },
+  { value: 2, caption: "Bentley" },
+  { value: 3, caption: "Alfa Romeo" },
+  { value: 4, caption: "Ferrari" },
+  { value: 5, caption: "Subaru" },
+  { value: 6, caption: "Porsche" },
+  { value: 7, caption: "Tesla" },
+  { value: 8, caption: "Toyota" },
+  { value: 9, caption: "Renault" },
+  { value: 10, caption: "Peugeot" },
+  { value: 11, caption: "Suzuki" },
+  { value: 12, caption: "Mitsubishi" },
+  { value: 13, caption: "Nissan" },
+];
+
+const container = document.getElementById("divTask4Cars");
+
+for(let i = 0; i < CarTypes.length; i++) {
+  const car = CarTypes[i];
+
+  const radio = document.createElement("input");
+  radio.type = "radio";
+  radio.name = "carBrand";
+  radio.value = car.caption;
+
+  const label = document.createElement("label");
+  label.appendChild(radio);
+  label.append(" " + car.caption);
+
+  container.appendChild(label);
+  container.appendChild(document.createElement("br"));
+}
+
+container.addEventListener("change", function(){
+  const selected = document.querySelector(`input[name="carBrand"]:checked`);
+  document.getElementById("txtTask4Output").textContent = 
+  selected ? `Selected car: ${selected.value}` : "";
+});
+</script>
 <p></p>
 <fieldset>
   <legend>Task 5: Animals</legend>
@@ -61,6 +152,12 @@
   </select>
   <p id="txtTask5Output"></p>
 </fieldset>
+<script>
+document.getElementById("selectTask5Animals").addEventListener("change", function(){
+const selected = this.options[this.selectedIndex].text;
+document.getElementById("txtTask5Output").textContent = "You selected: " + selected;
+});
+</script>
 <p></p>
 <fieldset>
   <legend>Task 6: Names</legend>
@@ -69,6 +166,23 @@
   </select>
   <p id="txtTask6Output">You selected: </p>
 </fieldset>
+<script>
+  const GirlsNames = ["Anne", "Inger", "Kari", "Marit", "Ingrid", "Liv", "Eva", "Berit", "Astrid", "Bjørg", "Hilde", "Anna", "Solveig", "Marianne", "Randi", "Ida", "Nina", "Maria", "Elisabeth", "Kristin"];
+
+  const select = document.getElementById("selectTask6Girls");
+
+for (let i = 0; i < GirlsNames.length; i++){
+ const option = document.createElement("option");
+ option.value = GirlsNames[i];
+ option.textContent = GirlsNames[i];
+ select.appendChild(option); 
+}
+
+select.addEventListener("change", function(){
+  const selectedName = this.value;
+  document.getElementById("txtTask6Output").textContent = "You selected: " + selectedName;
+});
+</script>
 <p></p>
 <fieldset>
   <legend>Task 7: Movies</legend>
@@ -96,9 +210,80 @@
     </table>
   </div>
 </fieldset>
+<script>
+  const MovieGenre = [
+  "Action",
+  "Adventure",
+  "Animation",
+  "Biography",
+  "Comedy",
+  "Crime",
+  "Documentary",
+  "Drama",
+  "Family",
+  "Fantasy",
+  "Film Noir",
+  "History",
+  "Horror",
+  "Music",
+  "Musical",
+  "Mystery",
+  "Romance",
+  "Sci-Fi",
+  "Short",
+  "Sport",
+  "Superhero",
+  "Thriller",
+  "War",
+  "Western",
+];
+
+const movieSelect = document.getElementById("selectMovieGenre");
+
+for(let i = 0; i < MovieGenre.length; i++) {
+  const option = document.createElement("option");
+  option.value = MovieGenre[i];
+  option.textContent = MovieGenre[i];
+  movieSelect.appendChild(option);
+}
+
+document.getElementById("cmbAddMovie").addEventListener("click", function() {
+
+  const title = document.getElementById("txtMovieTitle").value;
+  const genre = document.getElementById("selectMovieGenre").value;
+  const director = document.getElementById("txtMovieDirector").value;
+  const rate = document.getElementById("txtMovieRate").value;
+  
+  if (title === "" || director === "") {
+    alert("Please enter both Title and Director");
+    return;
+  }
+
+  const table = document.getElementById("tblMovies");
+  const row = table.insertRow(-1);
+  const movieNumber = table.rows.length - 1;
+
+  row.insertCell(0).textContent = movieNumber;
+  row.insertCell(1).textContent = title;
+  row.insertCell(2).textContent = genre;
+  row.insertCell(3).textContent = director;
+  row.insertCell(4).textContent = rate;
+
+  document.getElementById("txtMovieTitle").value = "";
+  document.getElementById("txtMovieDirector").value = "";
+  document.getElementById("txtMovieRate").value = 5;
+  movieSelect.selectedIndex = 0;
+});
+</script>
 <ol>
-  <li>[Write the question here, and copy this for more questions]</li>
-  <p>[Write your answer here, and copy this for more answers]</p>
+  <li>In this assignment, we use the DOM. Explain how this library can help us develop interactive webpages.</li>
+  <p>DOM is an interface that allows programmers to access and change HTML elements while the page is running. </p>
+  <li>What is an event? Simply explain what happens when we add an event listener to an object.</li>
+  <p>An event is basically the website user interacting with the webpage. Whether that be clicking buttons, or selecting elements in a menu. When we add an event listener to an object, we make the code wait for a users interaction for the code to kick into action.</p>
+  <li>Sometimes we need to use an event object to get data from the event. Explain how this event object is structured, don't explain all functions or attributes. Try to explain, for example, how to retrieve data from a keyboard or mouse.</li>
+  <p>When an event happens, the browser creates a separate object for the event and sends it to the function, as the event contains information important to the function.</p>
+  <li>Explain the main difference between DOM id and DOM name. Can we have identical IDs?</li>
+  <p> There are a couple differences; for example, DOM id must be unique in the entire document, as well DOM name does not need to be unique. Because the id has to be unique, you cannot have identical ids for multiple elements. </p>
 </ol>
 <script type="module" src="./task_4-3.mjs" defer></script>
 </body>
